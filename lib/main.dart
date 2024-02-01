@@ -11,10 +11,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      showSemanticsDebugger: false,
+      theme: CupertinoThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
       home: CupertinoPageScaffold(
         child: CupertinoTabScaffold(
           tabBar: CupertinoTabBar(
+            backgroundColor: Colors.white,
             items: const [
               BottomNavigationBarItem(
                 label: 'Recents',
@@ -60,12 +66,16 @@ class _PageOneState extends State<PageOne> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10.0),
+      color: Colors.grey[100], // Fondo gris claro
       child: ListView(
         children: [
           // Icono en la esquina superior derecha
           Container(
             alignment: Alignment.topRight,
-            child: const Icon(CupertinoIcons.ellipsis),
+            child: const Icon(
+              CupertinoIcons.ellipsis,
+              color: Colors.grey,
+            ),
           ),
 
           // Barra de búsqueda con ícono de micrófono
@@ -74,15 +84,20 @@ class _PageOneState extends State<PageOne> {
             children: [
               CupertinoSearchTextField(
                 placeholder: 'Search',
+                placeholderStyle: TextStyle(color: Colors.grey),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
                 onSubmitted: (String value) {
                   print('Searched for: $value');
                 },
               ),
-              const Positioned(
+              Positioned(
                 right: 8.0,
                 child: Icon(
                   CupertinoIcons.mic,
-                  color: CupertinoColors.systemGrey,
+                  color: Colors.grey,
                 ),
               ),
             ],
@@ -90,10 +105,10 @@ class _PageOneState extends State<PageOne> {
 
           // Sección de Favoritos con ícono de flecha hacia abajo
           CupertinoListSection(
-            header:const Row(
+            header: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Favorites', style: TextStyle(fontSize: 20.0)),
+                Text('Favorites', style: TextStyle(fontSize: 20.0, color: Colors.black)),
                 Icon(
                   Icons.keyboard_arrow_down,
                   color: CupertinoColors.activeBlue,
@@ -146,10 +161,10 @@ class _PageOneState extends State<PageOne> {
 
           // Sección de Favoritos con ícono de flecha hacia abajo
           CupertinoListSection(
-            header:const Row(
+            header: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Favorites', style: TextStyle(fontSize: 20.0)),
+                Text('Favorites', style: TextStyle(fontSize: 20.0, color: Colors.black)),
                 Icon(
                   Icons.keyboard_arrow_down,
                   color: CupertinoColors.activeBlue,
@@ -170,10 +185,10 @@ class _PageOneState extends State<PageOne> {
 
           // Sección de Favoritos con íconos de Checkbox
           CupertinoListSection(
-            header:const Row(
+            header: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Favorites', style: TextStyle(fontSize: 20.0)),
+                Text('Favorites', style: TextStyle(fontSize: 20.0, color: Colors.black)),
                 Icon(
                   Icons.keyboard_arrow_down,
                   color: CupertinoColors.activeBlue,
@@ -182,7 +197,7 @@ class _PageOneState extends State<PageOne> {
             ),
             children: <CupertinoListTile>[
               CupertinoListTile(
-                title:const Text('IcloudDrive'),
+                title: Text('IcloudDrive'),
                 leading: CupertinoCheckbox(
                   tristate: true,
                   value: isChecked,
@@ -192,7 +207,7 @@ class _PageOneState extends State<PageOne> {
                     });
                   },
                 ),
-                trailing:const CupertinoListTileChevron(),
+                trailing: CupertinoListTileChevron(),
               ),
               CupertinoListTile(
                 title: Text('IcloudDrive'),
@@ -205,7 +220,7 @@ class _PageOneState extends State<PageOne> {
                     });
                   },
                 ),
-                trailing: const CupertinoListTileChevron(),
+                trailing: CupertinoListTileChevron(),
               ),
             ],
           ),
